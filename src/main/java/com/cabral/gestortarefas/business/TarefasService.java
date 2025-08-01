@@ -9,6 +9,7 @@ import com.cabral.gestortarefas.infrastructure.security.JwtUtil;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class TarefasService {
@@ -17,13 +18,13 @@ public class TarefasService {
     private final TarefasConverter tarefasConverter;
     private final JwtUtil jwtUtil;
 
-    public TarefasService(TarefasRepository tarefasRepository, TarefasConverter tarefasConverter,JwtUtil jwtUtil) {
+    public TarefasService(TarefasRepository tarefasRepository, TarefasConverter tarefasConverter, JwtUtil jwtUtil) {
         this.tarefasRepository = tarefasRepository;
         this.tarefasConverter = tarefasConverter;
         this.jwtUtil = jwtUtil;
     }
 
-    public TarefasDTO gravarTarefa(String token,TarefasDTO dto){
+    public TarefasDTO gravarTarefa(String token, TarefasDTO dto) {
         String email = jwtUtil.extractEmailToken(token.substring(7));
         dto.setDataCriacao(LocalDateTime.now());
         dto.setStatusNotificacaoEnum(StatusNotificacaoEnum.PENDENTE);
@@ -33,4 +34,19 @@ public class TarefasService {
         return tarefasConverter.paraTarefaDTO(
                 tarefasRepository.save(entity));
     }
+
+    public List<TarefasDTO> buscaTarefasAgendadasPorPeriodo(LocalDateTime dataInicial, LocalDateTime dataFinal) {
+        return tarefasConverter.paraListaTarefasDTO(
+                tarefasRepository.findByDataEventoBetween(dataInicial, dataFinal)
+        );
+    }
+
+    public List<TarefasDTO> buscaTarefasPorEmail(String token) {
+        String email = jwtUtil.extractEmailToken(token.substring(7));
+        List<TarefasEntity> listaTarefas = tarefasRepository.findByEmailUsuario(email);
+
+        return tarefasConverter.paraListaTarefasDTO(listaTarefas);
+    }
+
 }
+
