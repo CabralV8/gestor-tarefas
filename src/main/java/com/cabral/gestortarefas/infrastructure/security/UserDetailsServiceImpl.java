@@ -3,13 +3,9 @@ package com.cabral.gestortarefas.infrastructure.security;
 
 import com.cabral.gestortarefas.business.dto.UsuarioDTO;
 import com.cabral.gestortarefas.infrastructure.client.UsuarioClient;
-import com.cabral.usuarioapi.insfrastructure.entity.Usuario;
-import com.cabral.usuarioapi.insfrastructure.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
