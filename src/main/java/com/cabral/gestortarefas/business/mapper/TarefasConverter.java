@@ -1,6 +1,7 @@
 package com.cabral.gestortarefas.business.mapper;
 
-import com.cabral.gestortarefas.business.dto.TarefasDTO;
+
+import com.cabral.gestortarefas.business.records.TarefasDTORecord;
 import com.cabral.gestortarefas.infrastructure.entity.TarefasEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -13,11 +14,11 @@ public interface TarefasConverter {
     @Mapping(source = "id", target = "id")
     @Mapping(source = "dataEvento", target = "dataEvento")
     @Mapping(source = "dataCriacao", target = "dataCriacao")
-    TarefasEntity paraTarefaEntity(TarefasDTO tarefasDTO);
+    TarefasEntity paraTarefaEntity(TarefasDTORecord tarefasDTO);
 
-    TarefasDTO paraTarefaDTO(TarefasEntity tarefasEntity);
+    TarefasDTORecord paraTarefaDTO(TarefasEntity tarefasEntity);
 
-    List<TarefasEntity> paraListaTarefasEntity(List<TarefasDTO> tarefasDTO);
+    List<TarefasEntity> paraListaTarefasEntity(List<TarefasDTORecord> tarefasDTO);
 
-    List<TarefasDTO> paraListaTarefasDTO(List<TarefasEntity> tarefasEntity);
+    List<TarefasDTORecord> paraListaTarefasDTORecord(List<TarefasEntity> tarefasEntity);
 }
