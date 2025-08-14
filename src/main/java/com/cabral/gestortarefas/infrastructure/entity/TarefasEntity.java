@@ -12,6 +12,7 @@ public class TarefasEntity {
     @Id
     private String id;
     private String nomeTarefa;
+    private String descricao;
     private LocalDateTime dataCriacao;
     private LocalDateTime dataEvento;
     private String emailUsuario;
@@ -21,9 +22,10 @@ public class TarefasEntity {
     public TarefasEntity() {
     }
 
-    public TarefasEntity(String id, String nomeTarefa, LocalDateTime dataCriacao, LocalDateTime dataEvento, String emailUsuario, LocalDateTime dataAlteracao, StatusNotificacaoEnum statusNotificacaoEnum) {
+    public TarefasEntity(String id, String nomeTarefa, String descricao, LocalDateTime dataCriacao, LocalDateTime dataEvento, String emailUsuario, LocalDateTime dataAlteracao, StatusNotificacaoEnum statusNotificacaoEnum) {
         this.id = id;
         this.nomeTarefa = nomeTarefa;
+        this.descricao = descricao;
         this.dataCriacao = dataCriacao;
         this.dataEvento = dataEvento;
         this.emailUsuario = emailUsuario;
@@ -45,6 +47,14 @@ public class TarefasEntity {
 
     public void setNomeTarefa(String nomeTarefa) {
         this.nomeTarefa = nomeTarefa;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     public LocalDateTime getDataCriacao() {
